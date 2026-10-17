@@ -1,1 +1,3 @@
-export const schemaTypes = []
+import film from './film'
+
+export const schemaTypes = [film]

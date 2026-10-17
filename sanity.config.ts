@@ -4,10 +4,11 @@ import {visionTool} from '@sanity/vision'
 import {schemaTypes} from './schemaTypes'
 
 export default defineConfig({
+  basePath: '/studio',
   name: 'default',
   title: 'N11 Pictures',
 
-  projectId: '1bbo98jd',
+  projectId: 'c13lzzsv',
   dataset: 'production',
 
   plugins: [structureTool(), visionTool()],
