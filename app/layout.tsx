@@ -1,7 +1,5 @@
 import type { Metadata } from "next";
-import WebflowController from "./WebflowController";
-import ScrollRevealController from "./ScrollRevealController";
-import Navbar from "./components/Navbar";
+import SiteChrome from "./SiteChrome";
 
 import "../public/css/normalize.css";
 import "../public/css/webflow.css";
@@ -24,11 +22,7 @@ export default function RootLayout({
       data-wf-site="67448431fea0f748c29a1d66" 
     >
       <body style={{ margin: 0, padding: 0 }}>
-        <WebflowController />
-        <ScrollRevealController />
-        
-        <Navbar />
-        
+        <SiteChrome />
         {children}
       </body>
     </html>
