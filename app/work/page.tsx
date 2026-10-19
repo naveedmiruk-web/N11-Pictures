@@ -1,7 +1,6 @@
 import { client } from "../../sanity";
 import ContactCta from "../components/ContactCta";
 import ProjectGrid from "./ProjectGrid";
-import YouTubeEmbed from "../components/YouTubeEmbed";
 
 export const dynamic = "force-dynamic";
 
@@ -12,14 +11,6 @@ type WorkProject = {
   slug?: string;
   imageUrl?: string;
   sourceUrl?: string;
-};
-
-type YouTubeVideo = {
-  _id: string;
-  title: string;
-  youtubeUrl: string;
-  description?: string;
-  order?: number;
 };
 
 function categoryGroup(category?: string) {
@@ -55,17 +46,6 @@ export default async function WorkPage() {
     "imageUrl": heroImage.asset->url,
     "sourceUrl": sourceMetadata.url
   }`);
-
-  // Fetch YouTube videos from Sanity
-  const youtubeVideos = await client.fetch<YouTubeVideo[]>(
-    `*[_type == "youtubeVideo"] | order(order asc, _createdAt asc) {
-      _id,
-      title,
-      youtubeUrl,
-      description,
-      order
-    }`
-  );
 
   const projectsWithHrefs = projects.map((project) => ({
     ...project,
@@ -209,39 +189,7 @@ export default async function WorkPage() {
         />
       </div>
 
-      {/* FOLIE CLIPS — YouTube Section */}
-      {youtubeVideos.length > 0 && (
-        <>
-          <section data-w-id="folie-clips-heading" data-scroll-reveal className="section-top-copy">
-            <div className="content">
-              <h1 className="heading-project">FOLIE CLIPS</h1>
-            </div>
-          </section>
 
-          <div className="yt-grid-wrapper">
-            {youtubeVideos.map((video) => (
-              <div key={video._id} className="yt-card">
-                <YouTubeEmbed url={video.youtubeUrl} title={video.title} />
-                <p className="yt-card-title">{video.title}</p>
-                {video.description && (
-                  <p className="yt-card-desc">{video.description}</p>
-                )}
-              </div>
-            ))}
-          </div>
-
-          <div className="yt-channel-cta">
-            <a
-              href="https://www.youtube.com/channel/UCLclLDRxwlSbz3dwkKN2jfw"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="button-3 w-button"
-            >
-              View Full Channel ↗
-            </a>
-          </div>
-        </>
-      )}
 
       {/* Support Us */}
       <div className="div-block-10">

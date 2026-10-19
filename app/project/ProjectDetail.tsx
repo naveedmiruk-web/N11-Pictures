@@ -171,6 +171,10 @@ export function ProjectDetail({ project }: { project: FilmProject }) {
             </div>
           </div>
 
+          {additionalVideos.map((url, index) => (
+            <ProjectVideo key={`${project._id}-video-${index}`} url={url} title={`${project.title} video ${index + 1}`} />
+          ))}
+
           {gallery.map((image, index) => (
             <img
               key={`${project._id}-gallery-${index}`}
@@ -181,10 +185,6 @@ export function ProjectDetail({ project }: { project: FilmProject }) {
               alt={image.alt ?? `${project.title} image ${index + 1}`}
               className="image"
             />
-          ))}
-
-          {additionalVideos.map((url, index) => (
-            <ProjectVideo key={`${project._id}-video-${index}`} url={url} title={`${project.title} video ${index + 1}`} />
           ))}
         </div>
       </section>
